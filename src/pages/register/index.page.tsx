@@ -2,8 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
-import { Container, Form, FormError, Header } from './styles'
-import { RegisterFormData, RegisterFormSchema } from './utils/validate'
+import { Container, Form, FormError, Header } from '@/pages/register/styles'
+import {
+  RegisterFormData,
+  RegisterFormSchema,
+} from '@/pages/register/utils/validate'
 export default function Register() {
   const {
     register,
