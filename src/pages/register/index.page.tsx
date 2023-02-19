@@ -43,13 +43,18 @@ export default function Register() {
         toast.success('Usuário cadastrado com sucesso', {
           position: toast.POSITION.TOP_RIGHT,
           theme: 'dark',
+          autoClose: 2000,
         })
       }
+      setTimeout(() => {
+        router.push('/register/connect-calendar')
+      }, 3000)
     } catch (err) {
       if (err instanceof AxiosError && err?.response?.data?.message) {
         return toast.error('Usuário já existente. Tente com outro nome.', {
           position: toast.POSITION.TOP_RIGHT,
           theme: 'dark',
+          autoClose: 2000,
         })
       }
     }
@@ -94,7 +99,7 @@ export default function Register() {
           </Button>
         </Form>
       </Container>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
     </>
   )
 }
