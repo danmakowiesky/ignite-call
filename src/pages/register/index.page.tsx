@@ -7,14 +7,25 @@ import {
   RegisterFormData,
   RegisterFormSchema,
 } from '@/pages/register/utils/validate'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 export default function Register() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(RegisterFormSchema),
   })
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.query.username) {
+      setValue('username', String(router.query.username))
+    }
+  }, [router.query?.username, setValue])
 
   function handleRegister(data: RegisterFormData) {
     console.log(data)
@@ -45,12 +56,13 @@ export default function Register() {
         </label>
         <label>
           <Text size="sm">Nome completo</Text>
-          <TextInput placeholder="Seu nome" {...register('username')} />
+          <TextInput placeholder="Seu nome" {...register('name')} />
 
-          {errors.username && (
-            <FormError size="sm">{errors.username.message}</FormError>
+          {errors.name && (
+            <FormError size="sm">{errors.name.message}</FormError>
           )}
         </label>
+
         <Button type="submit" disabled={isSubmitting}>
           {' '}
           Próximo passo

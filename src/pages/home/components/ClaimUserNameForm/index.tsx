@@ -7,30 +7,35 @@ import {
 } from '@/pages/home/utils/validate'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormAnnotation } from './styles'
+import { useRouter } from 'next/router'
 
 export function ClaimUserNameForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ClaimUserNameFormData>({
     resolver: zodResolver(ClaimUserNameFormSchema),
   })
 
-  async function handleClaimUserFormData(data: ClaimUserNameFormData) {
-    console.log(data)
+  const router = useRouter()
+
+  async function handleClaimUsername(data: ClaimUserNameFormData) {
+    const { username } = data
+
+    router.push(`/register?username=${username}`)
   }
 
   return (
     <>
-      <Form as="form" onSubmit={handleSubmit(handleClaimUserFormData)}>
+      <Form as="form" onSubmit={handleSubmit(handleClaimUsername)}>
         <TextInput
           size="sm"
           prefix="ignite.com/"
           placeholder="seu-usuário"
           {...register('username')}
         />
-        <Button size="sm" type="submit">
+        <Button size="sm" type="submit" disabled={isSubmitting}>
           Reservar
           <ArrowRight />
         </Button>
