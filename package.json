@@ -21,6 +21,7 @@
     "eslint-config-next": "13.1.6",
     "i": "^0.3.7",
     "next": "13.1.6",
+    "next-auth": "^4.19.2",
     "nookies": "^2.5.2",
     "npm": "^9.5.0",
     "phosphor-react": "^1.4.1",

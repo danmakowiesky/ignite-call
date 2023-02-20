@@ -6,6 +6,7 @@ import {
   ConnectBox,
   ConnectItem,
 } from '@/pages/register/connect-calendar/styles'
+import { signIn } from 'next-auth/react'
 
 export default function Register() {
   // async function handleRegister() {
@@ -27,7 +28,11 @@ export default function Register() {
       <ConnectBox>
         <ConnectItem>
           <Text>Google Calendar</Text>
-          <Button variant="secondary" size="sm">
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => signIn('google')}
+          >
             Conectar
             <ArrowRight />
           </Button>
